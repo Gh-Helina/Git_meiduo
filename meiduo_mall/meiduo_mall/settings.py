@@ -136,7 +136,7 @@ DATABASES = {
     # },
 }
 # 2.配置数据库读写路由
-DATABASE_ROUTERS = ['utils.db_router.MasterSlaveDBRouter']
+# DATABASE_ROUTERS = ['utils.db_router.MasterSlaveDBRouter']
 
 ############redis#################
 CACHES = {
@@ -309,3 +309,16 @@ CORS_ORIGIN_WHITELIST = (
     'http://api.meiduo.site:8000'
 )
 CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
+
+# Django REST framework JWT配置
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+}

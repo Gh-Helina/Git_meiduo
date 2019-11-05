@@ -49,4 +49,7 @@ urlpatterns = [
     url(r'^',include(('apps.orders.urls','apps.orders'),namespace='orders')),
     #去支付
     url(r'^',include(('apps.payment.urls','apps.payment'),namespace='payment')),
+
+    url(r'^meiduo_admin/', include('apps.meiduo_admin.urls', namespace='meiduo_admin')),
+
 ]
