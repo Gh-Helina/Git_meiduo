@@ -1,8 +1,10 @@
-from datetime import date
+from datetime import date, timedelta
 
+from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.goods.models import GoodsVisitCount
 from apps.users.models import User
 
 
@@ -56,9 +58,43 @@ class UserOrderCountView(APIView):
         now_date = date.today()
         # 获取当日下单用户数量  orders__create_time 订单创建时间
         # 关联过滤查询 orderinfo__加表字段
+        # orders是apps里orders目录
         users = set(User.objects.filter(is_staff=False, orders__create_time__gte=now_date))
         count = len(users)
         return Response({
             "count": count,
             "date": now_date
         })
+
+
+###########统计月增用户总数量#################
+class UserMonthCountView(APIView):
+    def get(self, request):
+        # 1.获取当前日期
+        new_date = date.today()
+
+        # 2.# 获取一个月前日期
+        old_date = new_date - timedelta(30)
+
+        # 3.创建空列表保存每天的用户量
+        date_list = []
+
+        for i in range(30):
+            # 4.循环遍历获取当天日期
+            index_date = old_date + timedelta(i)
+
+            # 5.指定下一天日期
+            next_date = old_date + timedelta(i + 1)
+
+            #             # 查询条件是大于一个月的当前日期index_date，小于明天日期的用户next_date，得到当天用户量
+            count = User.objects.filter(is_staff=False, date_joined__gte=index_date, date_joined__lt=next_date).count()
+            date_list.append({
+                # 当天的数量
+                "count": count,
+                # 当天日期
+                "date": index_date
+            })
+        #  6.返回结果
+        return Response(date_list)
+
+###########统计商品分类访问量#################
