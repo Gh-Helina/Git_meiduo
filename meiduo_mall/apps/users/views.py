@@ -105,7 +105,7 @@ class LoginVies(View):
 
         # 3.判断用户名密码是否一致
         from django.contrib.auth import authenticate
-        user = authenticate(username=username, password=password)
+        user = authenticate(request,username=username, password=password)
         if user is None:
             return HttpResponseBadRequest('用户名或密码错误')
 
