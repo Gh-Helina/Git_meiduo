@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.meiduo_admin',
     # CORS跨域
     'corsheaders',
+    'rest_framework',
 ]
 CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 CRONJOBS = [
@@ -298,7 +299,6 @@ ALIPAY_RETURN_URL = 'http://www.meiduo.site:8000/payment/status/'
 APP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'apps/payment/keys/app_private_key.pem')
 ALIPAY_PUBLIC_KEY_PATH = os.path.join(BASE_DIR, 'apps/payment/keys/alipay_public_key.pem')
 
-
 # CORS跨域
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:8080',
@@ -312,13 +312,20 @@ CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 # Django REST framework JWT配置
 REST_FRAMEWORK = {
+    # 认证
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # JWT认证  本质是token认证
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
 import datetime
+
+# 有效期配置
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    # 返回方法的指定
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+        'apps.meiduo_admin.utils.jwt_response_payload_handler',
 }
