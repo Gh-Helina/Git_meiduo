@@ -10,4 +10,9 @@ urlpatterns = [
     url(r'^statistical/total_count/$', statistical.UserTotalCountView.as_view()),
     # 日注册用户统计路由：
     url(r'^statistical/day_increment/$', statistical.UserDayCountView.as_view()),
+    # 当天登录用户路由：
+    url(r'^statistical/day_active/$', statistical.UserActiveCountView.as_view()),
+    # 当天下订单的用户路由：
+    url(r'^statistical/day_orders/$', statistical.UserOrderCountView.as_view()),
+
 ]
