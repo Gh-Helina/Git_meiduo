@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e729dded-6895-4720-a1f2-d1359692c3ea" name="默认的" comment="用户绑定前端修改">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/utils/status.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user_center_site.html" afterPath="$PROJECT_DIR$/templates/user_center_site.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/meiduo_mall/settings.py" afterPath="$PROJECT_DIR$/meiduo_mall/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/user_center_site.js" afterPath="$PROJECT_DIR$/static/js/user_center_site.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,12 +27,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="user_center_site.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/user_center_site.html">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/meiduo_mall/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="279" column="6" lean-forward="true" selection-start-line="279" selection-start-column="6" selection-end-line="279" selection-end-column="6" />
+            <state relative-caret-position="163">
+              <caret line="301" column="8" lean-forward="false" selection-start-line="301" selection-start-column="8" selection-end-line="301" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -78,7 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/static/js/register.js" />
         <option value="$PROJECT_DIR$/apps/contents/utls.py" />
         <option value="$PROJECT_DIR$/apps/contents/utils.py" />
         <option value="$PROJECT_DIR$/templates/404.html" />
@@ -94,7 +95,6 @@
         <option value="$PROJECT_DIR$/templates/list.html" />
         <option value="$PROJECT_DIR$/apps/oauth/views.py" />
         <option value="$PROJECT_DIR$/apps/carts/utils.py" />
-        <option value="$PROJECT_DIR$/static/js/user_center_site.js" />
         <option value="$PROJECT_DIR$/static/js/place_order.js" />
         <option value="$PROJECT_DIR$/meiduo_mall/urls.py" />
         <option value="$PROJECT_DIR$/apps/payment/models.py" />
@@ -106,7 +106,6 @@
         <option value="$PROJECT_DIR$/static/generic_detail_html.py" />
         <option value="$PROJECT_DIR$/script/generic_detail_html.py" />
         <option value="$PROJECT_DIR$/utils/db_router.py" />
-        <option value="$PROJECT_DIR$/meiduo_mall/settings.py" />
         <option value="$PROJECT_DIR$/celery_tasks/config.py" />
         <option value="$PROJECT_DIR$/apps/carts/views.py" />
         <option value="$PROJECT_DIR$/apps/orders/views.py" />
@@ -129,6 +128,9 @@
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/uwsgi.ini" />
         <option value="$PROJECT_DIR$/templates/user_center_site.html" />
+        <option value="$PROJECT_DIR$/utils/status.py" />
+        <option value="$PROJECT_DIR$/static/js/user_center_site.js" />
+        <option value="$PROJECT_DIR$/meiduo_mall/settings.py" />
       </list>
     </option>
   </component>
@@ -179,15 +181,107 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiduo_mall" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="apps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Meiduo_mall/Meiduo_mall/meiduo_mall" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="JavaScriptPreferStrict" value="false" />
@@ -569,7 +663,7 @@
     <frame x="65" y="24" width="1297" height="591" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15827338" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22382094" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8032454" sideWeight="0.49720225" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30223125" sideWeight="0.5027978" order="7" side_tool="true" content_ui="tabs" />
@@ -658,51 +752,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="146" />
+      <option name="time" value="147" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/carts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="881">
-          <caret line="616" column="24" lean-forward="true" selection-start-line="616" selection-start-column="24" selection-end-line="616" selection-end-column="24" />
-          <folding>
-            <element signature="e#1804#1828#0" expanded="false" />
-            <element signature="e#5004#5452#1" expanded="false" />
-            <element signature="e#5506#8826#0" expanded="false" />
-            <element signature="e#8877#11646#0" expanded="false" />
-            <element signature="e#9658#9686#0" expanded="false" />
-            <element signature="e#10075#10100#0" expanded="false" />
-            <element signature="e#10570#10612#0" expanded="false" />
-            <element signature="e#11698#15082#0" expanded="false" />
-            <element signature="e#11698#12430#1" expanded="false" />
-            <element signature="e#15132#16749#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/place_order.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="81" column="19" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/payment/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/find_password.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-528">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/contents/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-395">
@@ -802,13 +856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/user_center_info.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1056">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -869,13 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="55" lean-forward="true" selection-start-line="6" selection-start-column="55" selection-end-line="6" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -942,37 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="526" column="0" lean-forward="false" selection-start-line="526" selection-start-column="0" selection-end-line="526" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#831#2351#0" expanded="false" />
-            <element signature="e#2389#2597#0" expanded="false" />
-            <element signature="e#2632#2794#0" expanded="false" />
-            <element signature="e#2859#4120#0" expanded="false" />
-            <element signature="e#4331#5227#0" expanded="false" />
-            <element signature="e#5401#5897#0" expanded="false" />
-            <element signature="e#6003#7646#0" expanded="false" />
-            <element signature="e#7715#8451#0" expanded="false" />
-            <element signature="e#8521#8603#0" expanded="false" />
-            <element signature="e#8702#11298#0" expanded="false" />
-            <element signature="e#11391#12525#0" expanded="false" />
-            <element signature="e#12631#15364#0" expanded="false" />
-            <element signature="e#15472#15983#0" expanded="false" />
-            <element signature="e#16099#16696#0" expanded="false" />
-            <element signature="e#16842#16912#0" expanded="false" />
-            <element signature="e#16951#18144#0" expanded="false" />
-            <element signature="e#18229#20251#0" expanded="false" />
-            <element signature="e#20448#21487#0" expanded="false" />
-            <element signature="e#21529#22883#0" expanded="false" />
-            <element signature="e#22995#23939#0" expanded="false" />
-            <element signature="e#23980#25262#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/user_center_info.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -1036,26 +1045,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/meiduo_mall/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3387">
-          <caret line="49" column="12" lean-forward="false" selection-start-line="49" selection-start-column="12" selection-end-line="49" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/goods_judge.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1936">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/status.py" />
+    <entry file="file://$PROJECT_DIR$/apps/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="166" column="23" lean-forward="true" selection-start-line="166" selection-start-column="23" selection-end-line="166" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#831#2351#0" expanded="false" />
+            <element signature="e#2389#2597#0" expanded="false" />
+            <element signature="e#2632#2794#0" expanded="false" />
+            <element signature="e#2859#4120#0" expanded="false" />
+            <element signature="e#5401#5897#0" expanded="false" />
+            <element signature="e#6003#7646#0" expanded="false" />
+            <element signature="e#7715#8451#0" expanded="false" />
+            <element signature="e#8521#8603#0" expanded="false" />
+            <element signature="e#8702#11298#0" expanded="false" />
+            <element signature="e#11391#12525#0" expanded="false" />
+            <element signature="e#12631#15364#0" expanded="false" />
+            <element signature="e#15472#15983#0" expanded="false" />
+            <element signature="e#16099#16696#0" expanded="false" />
+            <element signature="e#16842#16912#0" expanded="false" />
+            <element signature="e#16951#18144#0" expanded="false" />
+            <element signature="e#18229#20251#0" expanded="false" />
+            <element signature="e#20448#21487#0" expanded="false" />
+            <element signature="e#21529#22883#0" expanded="false" />
+            <element signature="e#22995#23939#0" expanded="false" />
+            <element signature="e#23980#25262#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/user_center_info.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/cart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2068">
+          <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/carts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="389" column="17" lean-forward="false" selection-start-line="388" selection-start-column="33" selection-end-line="389" selection-end-column="17" />
+          <folding>
+            <element signature="e#1804#1828#0" expanded="false" />
+            <element signature="e#5004#5452#1" expanded="false" />
+            <element signature="e#5506#8826#0" expanded="false" />
+            <element signature="e#9658#9686#0" expanded="false" />
+            <element signature="e#10075#10100#0" expanded="false" />
+            <element signature="e#10570#10612#0" expanded="false" />
+            <element signature="e#11698#15082#0" expanded="false" />
+            <element signature="e#11698#12430#1" expanded="false" />
+            <element signature="e#15132#16749#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/user_center_site.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-286">
+          <caret line="26" column="12" lean-forward="false" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/user_center_site.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="279" column="6" lean-forward="true" selection-start-line="279" selection-start-column="6" selection-end-line="279" selection-end-column="6" />
+        <state relative-caret-position="2156">
+          <caret line="289" column="64" lean-forward="false" selection-start-line="289" selection-start-column="64" selection-end-line="289" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/meiduo_mall/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="301" column="8" lean-forward="false" selection-start-line="301" selection-start-column="8" selection-end-line="301" selection-end-column="8" />
           <folding />
         </state>
       </provider>

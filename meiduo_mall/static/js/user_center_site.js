@@ -24,6 +24,7 @@ var vm = new Vue({
             editing_address_index: '',
             edit_title_index: '',
             input_title: '',
+
         },
         error_receiver: false,
         error_place: false,

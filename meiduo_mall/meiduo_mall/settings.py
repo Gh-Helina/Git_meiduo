@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'apps.orders',
     'apps.payment',
     'django_crontab',
+    'apps.meiduo_admin',
+    # CORS跨域
+    'corsheaders',
 ]
 CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 CRONJOBS = [
@@ -56,6 +59,8 @@ CRONJOBS = [
 ]
 
 MIDDLEWARE = [
+    # CORS跨域
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,6 +68,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'meiduo_mall.urls'
@@ -112,7 +118,7 @@ WSGI_APPLICATION = 'meiduo_mall.wsgi.application'
 #     }
 # }
 DATABASES = {
-    'default': {#主
+    'default': {  # 主
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'HOST': '127.0.0.1',  # 数据库主机
         'PORT': 3306,  # 数据库端口
@@ -120,14 +126,14 @@ DATABASES = {
         'PASSWORD': 'mysql',  # 数据库用户密码
         'NAME': 'meiduo_mall'  # 数据库名字
     },
-    'slave': { #从服务器
-        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
-        'HOST': '127.0.0.1',  # 数据库主机
-        'PORT': 8306,  # 数据库端口
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': 'mysql',  # 数据库用户密码
-        'NAME': 'meiduo_mall'  # 数据库名字
-    },
+    # 'slave': {  # 从服务器
+    #     'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+    #     'HOST': '127.0.0.1',  # 数据库主机
+    #     'PORT': 8306,  # 数据库端口
+    #     'USER': 'root',  # 数据库用户名
+    #     'PASSWORD': 'mysql',  # 数据库用户密码
+    #     'NAME': 'meiduo_mall'  # 数据库名字
+    # },
 }
 # 2.配置数据库读写路由
 DATABASE_ROUTERS = ['utils.db_router.MasterSlaveDBRouter']
@@ -291,3 +297,15 @@ ALIPAY_URL = 'https://openapi.alipaydev.com/gateway.do'
 ALIPAY_RETURN_URL = 'http://www.meiduo.site:8000/payment/status/'
 APP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'apps/payment/keys/app_private_key.pem')
 ALIPAY_PUBLIC_KEY_PATH = os.path.join(BASE_DIR, 'apps/payment/keys/alipay_public_key.pem')
+
+
+# CORS跨域
+CORS_ORIGIN_WHITELIST = (
+    'http://127.0.0.1:8080',
+    'http://127.0.0.1:8000',
+    'http://localhost:8080',
+    'http://www.meiduo.site:8080',
+    'http://www.meiduo.site:8000',
+    'http://api.meiduo.site:8000'
+)
+CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
