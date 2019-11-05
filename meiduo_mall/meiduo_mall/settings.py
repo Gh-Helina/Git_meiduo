@@ -327,5 +327,6 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     # 返回方法的指定
     'JWT_RESPONSE_PAYLOAD_HANDLER':
+    # 告知Django使用我们自定义的jwt_response_payload_handler方法
         'apps.meiduo_admin.utils.jwt_response_payload_handler',
 }
