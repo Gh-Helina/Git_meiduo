@@ -1,10 +1,10 @@
 from datetime import date, timedelta
 
-from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.goods.models import GoodsVisitCount
+from apps.meiduo_admin.serializers.GoodsDaySerializer import GoodsSerializer
 from apps.users.models import User
 
 
@@ -94,7 +94,33 @@ class UserMonthCountView(APIView):
                 # 当天日期
                 "date": index_date
             })
-        #  6.返回结果
+        # 6.返回结果
         return Response(date_list)
 
 ###########统计商品分类访问量#################
+# class GoodsDayView(APIView):
+#     def get(self, request):
+#         # 获取当天日期
+#         now_date = date.today()
+#         # 获取当天访问的商品分类数量信息
+#         # GoodsVisitCount   (good/models/)
+#         # goodvist获取分类数量统计的对象，返回表每个字段的内容
+#         goodvist = GoodsVisitCount.objects.filter(date__gte=now_date)
+#         data_list = []
+#         for goods in goodvist:
+#             data_list.append({
+#                 'count': goods.count,
+#                 'cetegory': goods.category.name  # 获取分类外键(category)获取分类名称
+#             })
+#         return Response(data_list)
+###########统计商品分类访问量#################
+class GoodsDayView(APIView):
+    def get(self, request):
+        # 获取当天日期
+        now_date = date.today()
+        # 获取当天访问的商品分类数量信息
+        data = GoodsVisitCount.objects.filter(date=now_date)
+        # 序列化返回分类数量
+        ser = GoodsSerializer(data, many=True)
+
+        return Response(ser.data)
