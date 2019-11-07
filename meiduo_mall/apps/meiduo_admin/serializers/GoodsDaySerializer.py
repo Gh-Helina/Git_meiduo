@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from apps.goods.models import GoodsVisitCount
 
+
 ###########统计商品分类访问量序列化器#################
 class GoodsSerializer(serializers.ModelSerializer):
     # 指定返回分类名称

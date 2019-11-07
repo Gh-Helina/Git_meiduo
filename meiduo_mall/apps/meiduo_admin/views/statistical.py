@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -114,13 +115,20 @@ class UserMonthCountView(APIView):
 #             })
 #         return Response(data_list)
 ###########统计商品分类访问量#################
-class GoodsDayView(APIView):
-    def get(self, request):
-        # 获取当天日期
-        now_date = date.today()
-        # 获取当天访问的商品分类数量信息
-        data = GoodsVisitCount.objects.filter(date=now_date)
-        # 序列化返回分类数量
-        ser = GoodsSerializer(data, many=True)
+# class GoodsDayView(APIView):
+#     def get(self, request):
+#         # 获取当天日期
+#         now_date = date.today()
+#         # 获取当天访问的商品分类数量信息
+#         data = GoodsVisitCount.objects.filter(date=now_date)
+#         # 序列化返回分类数量
+#         ser = GoodsSerializer(data, many=True)
+#
+#         return Response(ser.data)
 
-        return Response(ser.data)
+###########统计商品分类访问量#################
+class GoodsDayView(ListAPIView):
+    #指定序列化器
+    serializer_class = GoodsSerializer
+    #指定查询集   只查询当天的
+    queryset = GoodsVisitCount.objects.filter(date=date.today())
