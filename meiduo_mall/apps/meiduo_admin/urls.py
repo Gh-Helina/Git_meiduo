@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^goods/simple/$', spes.SpecsView.as_view({'get': 'simple'})),
     # 商品SpecificationOption
     url(r'^goods/specs/simple/$', options.OptionView.as_view({'get': 'simple'})),
+    #####图片SPU商品#####
+    url(r'^skus/simple/$', images.ImageView.as_view({'get': 'simple'})),
 
 ]
 

@@ -1,7 +1,8 @@
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from apps.goods.models import SKUImage
-from apps.meiduo_admin.serializers.ImageSerializer import ImageSeriazlier
+from apps.goods.models import SKUImage, SKU
+from apps.meiduo_admin.serializers.ImageSerializer import ImageSeriazlier, SKUSeriazlier
 from apps.meiduo_admin.utils import PageNum
 
 
@@ -12,3 +13,10 @@ class ImageView(ModelViewSet):
     queryset = SKUImage.objects.all()
     # 分页
     pagination_class = PageNum
+
+    def simple(self, request):
+        # 查询sku表
+        data = SKU.objects.all()
+        # 返回sku表
+        ser = SKUSeriazlier(data, many=True)
+        return Response(ser.data)
