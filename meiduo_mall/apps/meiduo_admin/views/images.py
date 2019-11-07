@@ -1,3 +1,5 @@
+from fdfs_client.client import Fdfs_client
+from rest_framework import request
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -20,3 +22,4 @@ class ImageView(ModelViewSet):
         # 返回sku表
         ser = SKUSeriazlier(data, many=True)
         return Response(ser.data)
+

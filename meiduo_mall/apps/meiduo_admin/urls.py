@@ -26,10 +26,11 @@ urlpatterns = [
 
     # --------用户管理----------
     url(r'^users/$', users.UserView.as_view()),
-    # SPU商品路由：
-    # 视图集所以用get
+
+    # ---------商品管理---------
+    # 商品规格SPU商品路由：视图集所以用get
     url(r'^goods/simple/$', spes.SpecsView.as_view({'get': 'simple'})),
-    # 商品SpecificationOption
+    # 商品规格选项SPU商品
     url(r'^goods/specs/simple/$', options.OptionView.as_view({'get': 'simple'})),
     #####图片SPU商品#####
     url(r'^skus/simple/$', images.ImageView.as_view({'get': 'simple'})),

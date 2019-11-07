@@ -4,7 +4,7 @@ import pickle
 import re
 
 from django.contrib.auth import login, logout
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponseBadRequest
 from django.http import HttpResponseForbidden
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
