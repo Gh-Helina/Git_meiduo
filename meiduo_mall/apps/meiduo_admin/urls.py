@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
 from apps.meiduo_admin.views import images
+from apps.meiduo_admin.views import sku
 from apps.meiduo_admin.views import spes
 from apps.meiduo_admin.views import statistical, users, options
 
@@ -50,4 +51,10 @@ urlpatterns += router.urls
 # ----------图片表----------------
 router = DefaultRouter()
 router.register('skus/images', images.ImageView, base_name='images')
+urlpatterns += router.urls
+
+
+# ----------SKU表----------------
+router = DefaultRouter()
+router.register('skus', sku.SKUGoodsView, base_name='skus')
 urlpatterns += router.urls
