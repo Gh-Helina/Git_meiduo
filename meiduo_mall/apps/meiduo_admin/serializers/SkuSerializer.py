@@ -1,12 +1,12 @@
 from rest_framework import serializers
 
-from apps.goods.models import SKUSpecification, SKU
+from apps.goods.models import SKUSpecification, SKU, GoodsCategory
 
-# 定义一个序列化器的方式返回字段
+# 序列化器的第三种定义一个序列化器的方式返回specs字段
 class SKUSpecificationSerialzier(serializers.ModelSerializer):
     """
      SKU规格表序列化器(tb_sku_specification)
-   """
+    """
     # 规格id
     spec_id = serializers.IntegerField(read_only=True)
     # 选项id
@@ -18,10 +18,9 @@ class SKUSpecificationSerialzier(serializers.ModelSerializer):
 
 
 class SKUSerializer(serializers.ModelSerializer):
-    """
-    #         获取sku表信息的序列化器
-    #     """
-
+    '''
+    获取sku表信息的序列化器
+    '''
 
     # sku作为子表嵌套返回父表spu和category
     # 指定所关联的spu表信息
@@ -39,3 +38,10 @@ class SKUSerializer(serializers.ModelSerializer):
     class Meta:
         model = SKU  # SKU表中category外键关联了GoodsCategory分类表。spu外键关联了SPU商品表
         fields = '__all__'
+
+
+#########三级分类序列化器#################
+class GoodsCategoryserializer(serializers.ModelSerializer):
+    class Meta:
+        model=GoodsCategory
+        fields='__all__'

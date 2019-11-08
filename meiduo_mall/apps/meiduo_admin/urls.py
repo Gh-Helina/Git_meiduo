@@ -33,8 +33,11 @@ urlpatterns = [
     url(r'^goods/simple/$', spes.SpecsView.as_view({'get': 'simple'})),
     # 商品规格选项SPU商品
     url(r'^goods/specs/simple/$', options.OptionView.as_view({'get': 'simple'})),
-    #####图片SPU商品#####
+
+    # 图片SPU商品
     url(r'^skus/simple/$', images.ImageView.as_view({'get': 'simple'})),
+    # sku表获取三级分类路由
+    url(r'^skus/categories/$', sku.SKUGoodsView.as_view({'get': 'catrgoties'})),
 
 ]
 
@@ -52,7 +55,6 @@ urlpatterns += router.urls
 router = DefaultRouter()
 router.register('skus/images', images.ImageView, base_name='images')
 urlpatterns += router.urls
-
 
 # ----------SKU表----------------
 router = DefaultRouter()

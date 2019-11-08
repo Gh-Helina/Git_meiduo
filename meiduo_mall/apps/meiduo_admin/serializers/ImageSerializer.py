@@ -60,6 +60,7 @@ class ImageSeriazlier(serializers.ModelSerializer):
         instance.save()
         # 生成静态化页面
         # get_detail_html(sku.id)
+
         # 异步处理调用
         get_detail_html.delay(sku.id)
         return instance

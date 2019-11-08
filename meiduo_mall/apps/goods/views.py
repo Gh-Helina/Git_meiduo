@@ -1,13 +1,10 @@
-from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import render
 
-# Create your views here.
 from django.views import View
 
-from apps.goods.models import SKU, GoodsCategory, GoodsVisitCount
-from apps.goods.utils import get_breadcrumb
-from utils.response_code import RETCODE
+from apps.goods.models import  GoodsVisitCount
+
 
 
 # 排序加分页
@@ -90,7 +87,7 @@ class HotGoodsView(View):
 
 
 ###########详情页##############
-from django import http
+
 from django.shortcuts import render
 from django.views import View
 from apps.contents.utils import get_categories
@@ -136,7 +133,7 @@ class DetailView(View):
         goods_specs = sku.spu.specs.order_by('id')
         # 若当前sku的规格信息不完整，则不再继续
         if len(sku_key) < len(goods_specs):
-            return
+            return HttpResponse("规格信息不完整")
         for index, spec in enumerate(goods_specs):
             # 复制当前sku的规格键
             key = sku_key[:]
@@ -155,40 +152,10 @@ class DetailView(View):
             'sku': sku,
             'specs': goods_specs,
         }
-
         return render(request, 'detail.html', context)
 
 
-# class VisitCountView(View):
-#     def post(self, request,category_id):
-#         # 1.获取分类id
-#         try:
-#             category = GoodsCategory.objects.get(id=category_id)
-#         except GoodsCategory.DoesNotExist:
-#             return JsonResponse({'code':RETCODE.NODATAERR,'errmsg':' 没有此分类'})
-#
-#             # 2.获取今天日期
-#         from django.utils import timezone
-#         tody = timezone.localdate()
-#             # 3.增加访问量
-#             # 3.1
-#             # 根据分类id和日期查询数据库是否已经有今天的指定的分类记录，有加1，没有创建
-#         try:
-#             vc = GoodsVisitCount.object.get(category=category, date=tody)
-#         except GoodsVisitCount.DoesNotExist:
-#             # 不存在
-#             GoodsVisitCount.objects.create(
-#                 category=category,
-#                 date=tody,
-#                 count=1
-#             )
-#             return JsonResponse({'code':RETCODE.OK,'errmsg':'ok'})
-#         else:
-#             # 存在
-#             vc.count+=1
-#             vc.save()
-#
-#             return JsonResponse({'code ': RETCODE.OK, 'errmsg': 'ok'})
+
 
 """
 1.功能分析
