@@ -3,8 +3,8 @@ from fdfs_client.client import Fdfs_client
 from rest_framework.response import Response
 
 from apps.goods.models import SKUImage, SKU
-from apps.goods.utils import get_detail_html
-
+# from apps.goods.utils import get_detail_html
+from celery_tasks.static_html.tasks import get_detail_html
 
 class ImageSeriazlier(serializers.ModelSerializer):
     # 显示指明覆盖下面的
@@ -34,7 +34,9 @@ class ImageSeriazlier(serializers.ModelSerializer):
         # 7、保存图片表
         img = SKUImage.objects.create(sku=sku, image=path)
         # 生成静态化页面
-        get_detail_html(sku.id)
+        # get_detail_html(sku.id)
+        #异步处理调用
+        get_detail_html.delay(sku.id)
         return img
 
     def update(self, instance, validated_data):
@@ -56,13 +58,13 @@ class ImageSeriazlier(serializers.ModelSerializer):
         instance.image = path
         # 更新图片
         instance.save()
+        # 生成静态化页面
+        # get_detail_html(sku.id)
+        # 异步处理调用
+        get_detail_html.delay(sku.id)
         return instance
 
-        #
-
-        # # #     # ##########商品序列化器###
-
-
+ ###########商品序列化器########
 class SKUSeriazlier(serializers.ModelSerializer):
     class Meta:
         model = SKU
