@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
-
 from apps.goods.models import SKU
 from apps.meiduo_admin.serializers.SkuSerializer import SKUSerializer
 from apps.meiduo_admin.utils import PageNum
+
 
 class SKUGoodsView(ModelViewSet):
     # 指定序列化器
@@ -18,4 +18,4 @@ class SKUGoodsView(ModelViewSet):
         if keyword is '' or keyword is None:
             return SKU.objects.filter()
         else:
-            return SKU.objects.filter( name__contains=keyword)
+            return SKU.objects.filter(name__contains=keyword)

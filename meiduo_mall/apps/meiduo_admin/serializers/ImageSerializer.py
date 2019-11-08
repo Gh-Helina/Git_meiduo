@@ -3,6 +3,7 @@ from fdfs_client.client import Fdfs_client
 from rest_framework.response import Response
 
 from apps.goods.models import SKUImage, SKU
+from apps.goods.utils import get_detail_html
 
 
 class ImageSeriazlier(serializers.ModelSerializer):
@@ -14,6 +15,7 @@ class ImageSeriazlier(serializers.ModelSerializer):
         fields = '__all__'
 
         # 重写保存图片表业务
+
     def create(self, validated_data):
         # 1、获取前端sku对象
         sku = validated_data.get('sku')
@@ -31,9 +33,11 @@ class ImageSeriazlier(serializers.ModelSerializer):
 
         # 7、保存图片表
         img = SKUImage.objects.create(sku=sku, image=path)
+        # 生成静态化页面
+        get_detail_html(sku.id)
         return img
 
-    def update(self, instance,validated_data):
+    def update(self, instance, validated_data):
         # 1、获取前端sku对象
         sku = validated_data.get('sku')
         # 2、获取前端传递的图片数据
@@ -49,14 +53,14 @@ class ImageSeriazlier(serializers.ModelSerializer):
         path = res.get('Remote file_id')
 
         # 7、保存图片表
-        instance.image=path
+        instance.image = path
         # 更新图片
         instance.save()
         return instance
 
-    #
+        #
 
-    # # #     # ##########商品序列化器###
+        # # #     # ##########商品序列化器###
 
 
 class SKUSeriazlier(serializers.ModelSerializer):
