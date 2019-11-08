@@ -38,6 +38,8 @@ urlpatterns = [
     url(r'^skus/simple/$', images.ImageView.as_view({'get': 'simple'})),
     # sku表获取三级分类路由
     url(r'^skus/categories/$', sku.SKUGoodsView.as_view({'get': 'catrgoties'})),
+    #取spu规格信息路由
+    url(r'^goods/(?P<pk>\d+)/specs/$', sku.SKUGoodsView.as_view({'get': 'specs'})),
 
 ]
 
@@ -47,16 +49,16 @@ router.register('goods/specs', spes.SpecsView, base_name='specs')
 urlpatterns += router.urls
 
 # ----------商品规格选项表----------------
-router = DefaultRouter()
+
 router.register('specs/options', options.OptionView, base_name='options')
 urlpatterns += router.urls
 
 # ----------图片表----------------
-router = DefaultRouter()
+
 router.register('skus/images', images.ImageView, base_name='images')
 urlpatterns += router.urls
 
 # ----------SKU表----------------
-router = DefaultRouter()
+
 router.register('skus', sku.SKUGoodsView, base_name='skus')
 urlpatterns += router.urls
