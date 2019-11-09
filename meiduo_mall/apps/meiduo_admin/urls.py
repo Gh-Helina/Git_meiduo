@@ -1,3 +1,4 @@
+
 from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
@@ -8,6 +9,7 @@ from apps.meiduo_admin.views import permission
 from apps.meiduo_admin.views import sku
 from apps.meiduo_admin.views import spes
 from apps.meiduo_admin.views import spu
+from apps.meiduo_admin.views import groups
 from apps.meiduo_admin.views import statistical, users, options
 
 from . import views
@@ -53,6 +55,8 @@ urlpatterns = [
     # url(r'^orders/(?P<order_id>\d+)/status/$', orders.OrdersView.as_view({'get': 'status'})),
     #获得权限
     url(r'^permission/content_types/$', permission.PermissionView.as_view({'get': 'content_types'})),
+    #  获取权限表数据
+    url(r'^permission/simple/$', groups.GroupView.as_view({'get': 'simple'})),
 
 ]
 
@@ -87,4 +91,8 @@ urlpatterns += router.urls
 # ----------权限管理表----------------
 
 router.register('permission/perms', permission.PermissionView, base_name='permissions')
+urlpatterns += router.urls
+# ----------用户管理表----------------
+
+router.register('permission/groups', groups.GroupView, base_name='groups')
 urlpatterns += router.urls
