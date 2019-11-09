@@ -3,8 +3,10 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
 from apps.meiduo_admin.views import images
+from apps.meiduo_admin.views import orders
 from apps.meiduo_admin.views import sku
 from apps.meiduo_admin.views import spes
+from apps.meiduo_admin.views import spu
 from apps.meiduo_admin.views import statistical, users, options
 
 from . import views
@@ -38,8 +40,16 @@ urlpatterns = [
     url(r'^skus/simple/$', images.ImageView.as_view({'get': 'simple'})),
     # sku表获取三级分类路由
     url(r'^skus/categories/$', sku.SKUGoodsView.as_view({'get': 'catrgoties'})),
-    #取spu规格信息路由
+    # 获取spu规格信息路由
     url(r'^goods/(?P<pk>\d+)/specs/$', sku.SKUGoodsView.as_view({'get': 'specs'})),
+    # 获取品牌
+    url(r'^goods/brands/simple/$', sku.SKUGoodsView.as_view({'get': 'simple'})),
+    # 获取一级分类
+    url(r'^goods/channel/categories/$', sku.SKUGoodsView.as_view({'get': 'channel'})),
+    # 获取二三级分类
+    url(r'^goods/channel/categories/(?P<pk>\d+)/$', sku.SKUGoodsView.as_view({'get': 'channels'})),
+    #修改订单状态
+    # url(r'^orders/(?P<order_id>\d+)/status/$', orders.OrdersView.as_view({'get': 'status'})),
 
 ]
 
@@ -61,4 +71,13 @@ urlpatterns += router.urls
 # ----------SKU表----------------
 
 router.register('skus', sku.SKUGoodsView, base_name='skus')
+urlpatterns += router.urls
+
+# ----------SPU表----------------
+
+router.register('goods', spu.SPUGoodsView, base_name='spus')
+urlpatterns += router.urls
+# ----------Orders表----------------
+
+router.register('orders', orders.OrdersView, base_name='orders')
 urlpatterns += router.urls

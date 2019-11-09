@@ -45,8 +45,9 @@ class SKUSerializer(serializers.ModelSerializer):
         # 2、将specs数据从validated_data删除
         del validated_data['specs']
         # 保存sku表数据
+        # 调用父类表中的create，得到sku
         sku = super().create(validated_data)
-        # 保存sku具体规格表数据
+        # 保存sku具体规格表数据。因为返回的是字典，所以下面是字典形式
         for spec in specs:
             SKUSpecification.objects.create(sku=sku, spec_id=spec['spec_id'], option_id=spec['option_id'])
 
