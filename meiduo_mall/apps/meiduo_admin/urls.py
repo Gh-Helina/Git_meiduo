@@ -10,6 +10,8 @@ from apps.meiduo_admin.views import sku
 from apps.meiduo_admin.views import spes
 from apps.meiduo_admin.views import spu
 from apps.meiduo_admin.views import groups
+from apps.meiduo_admin.views import admin
+
 from apps.meiduo_admin.views import statistical, users, options
 
 from . import views
@@ -57,6 +59,8 @@ urlpatterns = [
     url(r'^permission/content_types/$', permission.PermissionView.as_view({'get': 'content_types'})),
     #  获取权限表数据
     url(r'^permission/simple/$', groups.GroupView.as_view({'get': 'simple'})),
+    #获取分组信息
+    url(r'^permission/groups/simple/$', admin.AdminView.as_view({'get': 'simple'})),
 
 ]
 
@@ -92,7 +96,11 @@ urlpatterns += router.urls
 
 router.register('permission/perms', permission.PermissionView, base_name='permissions')
 urlpatterns += router.urls
-# ----------用户管理表----------------
+# ----------用户组管理表----------------
 
 router.register('permission/groups', groups.GroupView, base_name='groups')
+urlpatterns += router.urls
+# ----------管理员管理表----------------
+
+router.register('permission/admins', admin.AdminView, base_name='admin')
 urlpatterns += router.urls

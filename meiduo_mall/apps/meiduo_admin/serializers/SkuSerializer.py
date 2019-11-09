@@ -1,3 +1,4 @@
+from django.db import transaction
 from rest_framework import serializers
 
 from apps.goods.models import SKUSpecification, SKU, GoodsCategory, SpecificationOption, SPUSpecification
@@ -38,22 +39,62 @@ class SKUSerializer(serializers.ModelSerializer):
         model = SKU  # SKU表中category外键关联了GoodsCategory分类表。spu外键关联了SPU商品表
         fields = '__all__'
 
-    # 重写父类保存方法完成sku表和sku具体规格表两张表
+    # 重写父类保存方法完成sku表和sku具体规格表两张表,多张表需要引入事务
     def create(self, validated_data):
-        # 1、获取specs数据
-        specs = validated_data.get('specs')
-        # 2、将specs数据从validated_data删除
-        del validated_data['specs']
-        # 保存sku表数据
-        # 调用父类表中的create，得到sku
-        sku = super().create(validated_data)
-        # 保存sku具体规格表数据。因为返回的是字典，所以下面是字典形式
-        for spec in specs:
-            SKUSpecification.objects.create(sku=sku, spec_id=spec['spec_id'], option_id=spec['option_id'])
+        # 开启事务(with和装饰器俩种方法)
+        with transaction.atomic():
+            # 设置保存点
+            save_point = transaction.savepoint()
+            try:
+                # 1、获取specs数据
+                specs = validated_data.get('specs')
+                # 2、将specs数据从validated_data删除
+                del validated_data['specs']
+                # 保存sku表数据
+                # 调用父类表中的create，得到sku
+                sku = super().create(validated_data)
+                # 保存sku具体规格表数据。因为返回的是字典，所以下面是字典形式
+                for spec in specs:
+                    SKUSpecification.objects.create(sku=sku, spec_id=spec['spec_id'], option_id=spec['option_id'])
+            except:
+                # 回滚到回滚点
+                transaction.savepoint(save_point)
+                raise serializers.ValidationError("数据保存失败")
+            # 提交
+            transaction.savepoint_commit(save_point)
+            return sku
 
-        return sku
+    def update(self, instance, validated_data):
+        # 开启事务(with和装饰器俩种方法)
+        with transaction.atomic():
+            # 设置保存点
+            save_point = transaction.savepoint()
+            try:
+                # 获取specs数据
+                 specs = validated_data.get('specs')
+                # 删除specs从validated_data
+                 del validated_data['specs']
+                # 更新sku表数据
+                 instance=SKU.objects.filter(id=instance.id).update(**validated_data)
+                # 更新sku具体规格表
+                 for spec in specs:
+                    # 因为返回的是字典，所以下面是字典形式
+                    # 查询要更新哪个sku的规格信息，spec_id更新哪个规格，满足才会更新option_id, 不然会更新成一个选项
+                    SKUSpecification.objects.filter(sku=instance, spc_id=spec['spec_id']).filter(option_id=spec['option_id'])
+                    # SKUSpecification.objects.filter(sku=instance, spc_id=spec['spec_id'],option_id=spec['option_id'])
+            except:
+                # 回滚到回滚点
+                transaction.savepoint(save_point)
+                raise serializers.ValidationError("数据更新失败")
+                # 提交
+            transaction.savepoint_commit(save_point)
+            # 操作sku表，instance
+            return instance
 
-#########三级分类序列化器#################
+
+            #########三级分类序列化器#################
+
+
 class GoodsCategoryserializer(serializers.ModelSerializer):
     class Meta:
         model = GoodsCategory
