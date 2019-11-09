@@ -4,6 +4,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 from apps.meiduo_admin.views import images
 from apps.meiduo_admin.views import orders
+from apps.meiduo_admin.views import permission
 from apps.meiduo_admin.views import sku
 from apps.meiduo_admin.views import spes
 from apps.meiduo_admin.views import spu
@@ -50,6 +51,8 @@ urlpatterns = [
     url(r'^goods/channel/categories/(?P<pk>\d+)/$', sku.SKUGoodsView.as_view({'get': 'channels'})),
     #修改订单状态
     # url(r'^orders/(?P<order_id>\d+)/status/$', orders.OrdersView.as_view({'get': 'status'})),
+    #获得权限
+    url(r'^permission/content_types/$', permission.PermissionView.as_view({'get': 'content_types'})),
 
 ]
 
@@ -80,4 +83,8 @@ urlpatterns += router.urls
 # ----------Orders表----------------
 
 router.register('orders', orders.OrdersView, base_name='orders')
+urlpatterns += router.urls
+# ----------权限管理表----------------
+
+router.register('permission/perms', permission.PermissionView, base_name='permissions')
 urlpatterns += router.urls
