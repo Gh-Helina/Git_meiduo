@@ -55,6 +55,8 @@ urlpatterns = [
     url(r'^goods/channel/categories/$', spu.SPUGoodsView.as_view({'get': 'channel'})),
     # # 获取二三级分类
     url(r'^goods/channel/categories/(?P<pk>\d+)/$', spu.SPUGoodsView.as_view({'get': 'channels'})),
+    #图片路径
+    url(r'^goods/images/$', spu.SPUGoodsView.as_view({'post': 'image'})),
 
     # ---------订单管理---------
     #修改订单状态

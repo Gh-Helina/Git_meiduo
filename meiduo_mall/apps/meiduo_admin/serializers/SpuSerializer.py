@@ -19,19 +19,24 @@ class SPUSerializer(serializers.ModelSerializer):
     class Meta:
         model = SPU
         fields = '__all__'
+
+
 ########品牌序列化器###############
 class SPUBrandsSerizliser(serializers.ModelSerializer):
     """
         SPU表品牌序列化器
     """
+
     class Meta:
         model = Brand
         fields = "__all__"
+
 
 class CategorysSerizliser(serializers.ModelSerializer):
     """
         SPU表分类信息获取序列化器
     """
+
     class Meta:
-        model=GoodsCategory
-        fields="__all__"
+        model = GoodsCategory
+        fields = "__all__"
