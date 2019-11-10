@@ -1,8 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
 from apps.goods.models import SPU, Brand, GoodsCategory
-from apps.meiduo_admin.serializers.SpecSerializer import SPUSerializer
+from apps.meiduo_admin.serializers.SpuSerializer import SPUSerializer
 from apps.meiduo_admin.serializers.SpuSerializer import SPUBrandsSerizliser, CategorysSerizliser
 from apps.meiduo_admin.utils import PageNum
 
@@ -12,9 +11,8 @@ class SPUGoodsView(ModelViewSet):
     queryset = SPU.objects.all()
     pagination_class = PageNum
 
-
- # 在类中跟定义获取品牌数据的方法
-    def simple(self, request):
+    # 在类中跟定义获取品牌数据的方法
+    def brands(self, request):
         # 1、查询所有品牌数据
         data = Brand.objects.all()
         # 2、序列化返回品牌数据

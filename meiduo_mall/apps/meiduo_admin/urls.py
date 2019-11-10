@@ -50,11 +50,11 @@ urlpatterns = [
 
     # ---------品牌管理---------
     # 获取品牌
-    url(r'^goods/brands/simple/$', sku.SKUGoodsView.as_view({'get': 'simple'})),
-    # 获取一级分类
-    url(r'^goods/channel/categories/$', sku.SKUGoodsView.as_view({'get': 'channel'})),
-    # 获取二三级分类
-    url(r'^goods/channel/categories/(?P<pk>\d+)/$', sku.SKUGoodsView.as_view({'get': 'channels'})),
+    url(r'^goods/brands/simple/$', spu.SPUGoodsView.as_view({'get': 'brands'})),
+    # # 获取一级分类
+    url(r'^goods/channel/categories/$', spu.SPUGoodsView.as_view({'get': 'channel'})),
+    # # 获取二三级分类
+    url(r'^goods/channel/categories/(?P<pk>\d+)/$', spu.SPUGoodsView.as_view({'get': 'channels'})),
 
     # ---------订单管理---------
     #修改订单状态
