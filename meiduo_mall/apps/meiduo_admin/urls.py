@@ -3,6 +3,7 @@ from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
+from apps.meiduo_admin.views import brands
 from apps.meiduo_admin.views import images
 from apps.meiduo_admin.views import orders
 from apps.meiduo_admin.views import permission
@@ -48,15 +49,17 @@ urlpatterns = [
     # 获取spu规格信息路由
     url(r'^goods/(?P<pk>\d+)/specs/$', sku.SKUGoodsView.as_view({'get': 'specs'})),
 
-    # ---------品牌管理---------
-    # 获取品牌
+    # ---------SPU中品牌管理---------
+    # 获取品牌信息
     url(r'^goods/brands/simple/$', spu.SPUGoodsView.as_view({'get': 'brands'})),
     # # 获取一级分类
     url(r'^goods/channel/categories/$', spu.SPUGoodsView.as_view({'get': 'channel'})),
     # # 获取二三级分类
     url(r'^goods/channel/categories/(?P<pk>\d+)/$', spu.SPUGoodsView.as_view({'get': 'channels'})),
-    #图片路径
+    #新增详情介绍图片路径
     url(r'^goods/images/$', spu.SPUGoodsView.as_view({'post': 'image'})),
+
+
 
     # ---------订单管理---------
     #修改订单状态
@@ -98,18 +101,27 @@ urlpatterns += router.urls
 
 router.register('goods', spu.SPUGoodsView, base_name='spus')
 urlpatterns += router.urls
+
+# ----------品牌表----------------
+#
+router.register('goods/brands', brands.BrandsView, base_name='brands')
+urlpatterns += router.urls
+
 # ----------Orders表----------------
 
 router.register('orders', orders.OrdersView, base_name='orders')
 urlpatterns += router.urls
+
 # ----------权限管理表----------------
 
 router.register('permission/perms', permission.PermissionView, base_name='permissions')
 urlpatterns += router.urls
+
 # ----------用户组管理表----------------
 
 router.register('permission/groups', groups.GroupView, base_name='groups')
 urlpatterns += router.urls
+
 # ----------管理员管理表----------------
 
 router.register('permission/admins', admin.AdminView, base_name='admin')

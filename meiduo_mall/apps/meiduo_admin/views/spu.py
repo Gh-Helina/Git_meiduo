@@ -2,16 +2,15 @@ from fdfs_client.client import Fdfs_client
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from apps.goods.models import SPU, Brand, GoodsCategory
-from apps.meiduo_admin.serializers.SpuSerializer import SPUSerializer
+from apps.meiduo_admin.serializers.SpuSerializer import SPUGoodSerializer
 from apps.meiduo_admin.serializers.SpuSerializer import SPUBrandsSerizliser, CategorysSerizliser
 from apps.meiduo_admin.utils import PageNum
 
 
 class SPUGoodsView(ModelViewSet):
-    serializer_class = SPUSerializer
+    serializer_class = SPUGoodSerializer
     queryset = SPU.objects.all()
     pagination_class = PageNum
-
 
     # 在类中跟定义获取品牌数据的方法
     def brands(self, request):
@@ -36,7 +35,7 @@ class SPUGoodsView(ModelViewSet):
         ser = CategorysSerizliser(data, many=True)
         return Response(ser.data)
 
-    def image(self,request):
+    def image(self, request):
         # 1.获取图片数据
         # 不能直接读取data信息
         image = request.data.get('image')
@@ -50,20 +49,10 @@ class SPUGoodsView(ModelViewSet):
         # 5、提取图片链接地址
         path = res.get('Remote file_id')
         # 6.构建路径
+        # 进入etc/hosts文件注册域名
         image_url = 'http://image.meiduo.site:8888/' + path
         # 7.返回给前端
         # img_url前端的字段
         return Response({'img_url': image_url})
-
-# class SKUGoodsView(ModelViewSet):
-#
-#     serializer_class =SKUGoodsSerializer
-#     pagination_class = PageNum
-#
-#     def get_queryset(self):
-#         keyword=self.request.query_params.get('keyword')
-#         if keyword == '' or keyword is None:
-#             return SKU.objects.all()
-#
-#         else:
-#             return SKU.objects.filter(name=keyword)
+        
+# SKUGoodsView继承的是ModelViewSet 所以保存逻辑还是使用同一个类视图
