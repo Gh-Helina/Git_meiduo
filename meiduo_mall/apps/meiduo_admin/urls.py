@@ -47,18 +47,26 @@ urlpatterns = [
     url(r'^skus/categories/$', sku.SKUGoodsView.as_view({'get': 'catrgoties'})),
     # 获取spu规格信息路由
     url(r'^goods/(?P<pk>\d+)/specs/$', sku.SKUGoodsView.as_view({'get': 'specs'})),
+
+    # ---------品牌管理---------
     # 获取品牌
     url(r'^goods/brands/simple/$', sku.SKUGoodsView.as_view({'get': 'simple'})),
     # 获取一级分类
     url(r'^goods/channel/categories/$', sku.SKUGoodsView.as_view({'get': 'channel'})),
     # 获取二三级分类
     url(r'^goods/channel/categories/(?P<pk>\d+)/$', sku.SKUGoodsView.as_view({'get': 'channels'})),
+
+    # ---------订单管理---------
     #修改订单状态
     # url(r'^orders/(?P<order_id>\d+)/status/$', orders.OrdersView.as_view({'get': 'status'})),
+
+    # ---------权限管理---------
     #获得权限
     url(r'^permission/content_types/$', permission.PermissionView.as_view({'get': 'content_types'})),
     #  获取权限表数据
     url(r'^permission/simple/$', groups.GroupView.as_view({'get': 'simple'})),
+
+    # ---------分组管理---------
     #获取分组信息
     url(r'^permission/groups/simple/$', admin.AdminView.as_view({'get': 'simple'})),
 

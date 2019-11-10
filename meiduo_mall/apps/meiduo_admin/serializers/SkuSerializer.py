@@ -2,7 +2,7 @@ from django.db import transaction
 from rest_framework import serializers
 
 from apps.goods.models import SKUSpecification, SKU, GoodsCategory, SpecificationOption, SPUSpecification
-
+# from celery_tasks.static_html.tasks import get_detail_html
 
 class SKUSpecificationSerializer(serializers.ModelSerializer):
     """
@@ -60,9 +60,13 @@ class SKUSerializer(serializers.ModelSerializer):
                 # 回滚到回滚点
                 transaction.savepoint(save_point)
                 raise serializers.ValidationError("数据保存失败")
-            # 提交
-            transaction.savepoint_commit(save_point)
-            return sku
+            else:
+                # 提交
+                transaction.savepoint_commit(save_point)
+
+                #sku信息静态化
+                # get_detail_html.delay(sku.id)
+                return sku
 
     def update(self, instance, validated_data):
         # 开启事务(with和装饰器俩种方法)
@@ -71,25 +75,27 @@ class SKUSerializer(serializers.ModelSerializer):
             save_point = transaction.savepoint()
             try:
                 # 获取specs数据
-                 specs = validated_data.get('specs')
+                specs = validated_data.get('specs')
                 # 删除specs从validated_data
-                 del validated_data['specs']
-                # 更新sku表数据
-                 instance=SKU.objects.filter(id=instance.id).update(**validated_data)
+                del validated_data['specs']
+                # 修改sku表数据
+                sku = super().update(instance, validated_data)
                 # 更新sku具体规格表
-                 for spec in specs:
+                for spec in specs:
                     # 因为返回的是字典，所以下面是字典形式
                     # 查询要更新哪个sku的规格信息，spec_id更新哪个规格，满足才会更新option_id, 不然会更新成一个选项
-                    SKUSpecification.objects.filter(sku=instance, spc_id=spec['spec_id']).filter(option_id=spec['option_id'])
-                    # SKUSpecification.objects.filter(sku=instance, spc_id=spec['spec_id'],option_id=spec['option_id'])
+                    SKUSpecification.objects.filter(sku=sku, spec_id=spec['spec_id']).update(option_id=spec['option_id'])
             except:
                 # 回滚到回滚点
                 transaction.savepoint(save_point)
                 raise serializers.ValidationError("数据更新失败")
-                # 提交
-            transaction.savepoint_commit(save_point)
-            # 操作sku表，instance
-            return instance
+            else:
+                    # 提交
+                transaction.savepoint_commit(save_point)
+                # sku信息静态化
+                # get_detail_html.delay(sku.id)
+                # 操作sku表，instance
+                return sku
 
 
             #########三级分类序列化器#################

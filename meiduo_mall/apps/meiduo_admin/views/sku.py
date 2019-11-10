@@ -4,10 +4,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from apps.goods.models import SKU, GoodsCategory, SPU, SKUSpecification
 from apps.meiduo_admin.serializers.SkuSerializer import SKUSerializer, GoodsCategoryserializer, SPUSpecificationSerialzier
-
 from apps.meiduo_admin.utils import PageNum
-
-
 class SKUGoodsView(ModelViewSet):
     # 指定序列化器
     serializer_class = SKUSerializer
