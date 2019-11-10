@@ -58,6 +58,8 @@ urlpatterns = [
     url(r'^goods/channel/categories/(?P<pk>\d+)/$', spu.SPUGoodsView.as_view({'get': 'channels'})),
     #新增详情介绍图片路径
     url(r'^goods/images/$', spu.SPUGoodsView.as_view({'post': 'image'})),
+    #品牌图片
+    # url(r'^goods/brands/$', brands.BrandsView.as_view({'post': 'image'})),
 
 
 
@@ -97,14 +99,13 @@ urlpatterns += router.urls
 router.register('skus', sku.SKUGoodsView, base_name='skus')
 urlpatterns += router.urls
 
-# ----------SPU表----------------
-
-router.register('goods', spu.SPUGoodsView, base_name='spus')
-urlpatterns += router.urls
 
 # ----------品牌表----------------
-#
 router.register('goods/brands', brands.BrandsView, base_name='brands')
+urlpatterns += router.urls
+
+# ----------SPU表----------------
+router.register('goods', spu.SPUGoodsView, base_name='spus')
 urlpatterns += router.urls
 
 # ----------Orders表----------------
