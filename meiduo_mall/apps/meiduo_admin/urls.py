@@ -1,4 +1,3 @@
-
 from django.conf.urls import url
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
@@ -56,25 +55,27 @@ urlpatterns = [
     url(r'^goods/channel/categories/$', spu.SPUGoodsView.as_view({'get': 'channel'})),
     # # 获取二三级分类
     url(r'^goods/channel/categories/(?P<pk>\d+)/$', spu.SPUGoodsView.as_view({'get': 'channels'})),
-    #新增详情介绍图片路径
+    # 新增详情介绍图片路径
     url(r'^goods/images/$', spu.SPUGoodsView.as_view({'post': 'image'})),
-    #品牌图片
+    # 品牌图片
     # url(r'^goods/brands/$', brands.BrandsView.as_view({'post': 'image'})),
 
 
 
     # ---------订单管理---------
-    #修改订单状态
+    # 修改订单状态
     # url(r'^orders/(?P<order_id>\d+)/status/$', orders.OrdersView.as_view({'get': 'status'})),
 
     # ---------权限管理---------
-    #获得权限
+    # 权限管理获得权限
     url(r'^permission/content_types/$', permission.PermissionView.as_view({'get': 'content_types'})),
-    #  获取权限表数据
+
+    # ---------用户组管理---------
+    # 用户组获取权限表数据
     url(r'^permission/simple/$', groups.GroupView.as_view({'get': 'simple'})),
 
-    # ---------分组管理---------
-    #获取分组信息
+    # ---------管理员分组管理---------
+    # 获取分组信息
     url(r'^permission/groups/simple/$', admin.AdminView.as_view({'get': 'simple'})),
 
 ]
@@ -98,7 +99,6 @@ urlpatterns += router.urls
 
 router.register('skus', sku.SKUGoodsView, base_name='skus')
 urlpatterns += router.urls
-
 
 # ----------品牌表----------------
 router.register('goods/brands', brands.BrandsView, base_name='brands')

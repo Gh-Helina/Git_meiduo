@@ -7,7 +7,6 @@ class PermissionSerialzier(serializers.ModelSerializer):
    用户权限表序列化器
     '''
 
-
     class Meta:
         model=Permission
         fields="__all__"

@@ -2,7 +2,6 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
 from apps.meiduo_admin.serializers.PermissionSerializer import PermissionSerialzier, ContentTypeSerialzier
 from apps.meiduo_admin.utils import PageNum
 
