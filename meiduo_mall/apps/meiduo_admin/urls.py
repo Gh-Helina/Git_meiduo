@@ -104,6 +104,10 @@ urlpatterns += router.urls
 router.register('goods/brands', brands.BrandsView, base_name='brands')
 urlpatterns += router.urls
 
+# ----------频道管理表----------------
+router.register('goods/brands', brands.BrandsView, base_name='brands')
+urlpatterns += router.urls
+
 # ----------SPU表----------------
 router.register('goods', spu.SPUGoodsView, base_name='spus')
 urlpatterns += router.urls
