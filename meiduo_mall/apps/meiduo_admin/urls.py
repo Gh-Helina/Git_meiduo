@@ -3,6 +3,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
 from apps.meiduo_admin.views import brands
+from apps.meiduo_admin.views import goodsChannel
 from apps.meiduo_admin.views import images
 from apps.meiduo_admin.views import orders
 from apps.meiduo_admin.views import permission
@@ -61,6 +62,11 @@ urlpatterns = [
     # url(r'^goods/brands/$', brands.BrandsView.as_view({'post': 'image'})),
 
 
+    # 获得频道组
+    url(r'^goods/channel_types/$', goodsChannel.GoodsChannelView.as_view({'get': 'goodschannelgroup'})),
+
+    # 频道组获取一级分类
+    url(r'^goods/categories/$', goodsChannel.GoodsChannelView.as_view({'get': 'channel'})),
 
     # ---------订单管理---------
     # 修改订单状态
@@ -100,11 +106,11 @@ urlpatterns += router.urls
 router.register('skus', sku.SKUGoodsView, base_name='skus')
 urlpatterns += router.urls
 
-# ----------品牌表----------------
-router.register('goods/brands', brands.BrandsView, base_name='brands')
+# ----------频道管理表----------------
+router.register('goods/channels', goodsChannel.GoodsChannelView, base_name='goodschannels')
 urlpatterns += router.urls
 
-# ----------频道管理表----------------
+# ----------品牌表----------------
 router.register('goods/brands', brands.BrandsView, base_name='brands')
 urlpatterns += router.urls
 
