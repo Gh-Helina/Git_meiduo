@@ -43,6 +43,7 @@ class BrandsSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         # 1、获取前端brand对象
         brand = validated_data.get('name')
+        first_letter = validated_data.get('first_letter')
         # 2、获取前端传递的图片数据
         logo = validated_data['logo']
         # 3、链接fasfDFS
@@ -57,6 +58,7 @@ class BrandsSerializer(serializers.ModelSerializer):
 
         # 7、保存图片表
         instance.logo = path
+
         # 更新图片
         instance.save()
         # 生成静态化页面
