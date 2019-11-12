@@ -1,5 +1,6 @@
 from django.db import transaction
 from rest_framework import serializers
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from apps.goods.models import SKU, GoodsCategory, SPU, SKUSpecification
@@ -12,7 +13,8 @@ class SKUGoodsView(ModelViewSet):
     # queryset = SKU.objects.all()
     # 指定分页器 进行分页返回
     pagination_class = PageNum
-
+    # DjangoModelPermissions限制操作表权限
+    permission_classes = [DjangoModelPermissions]
     # 重写get_queryset
     ######搜索##########
     def get_queryset(self):

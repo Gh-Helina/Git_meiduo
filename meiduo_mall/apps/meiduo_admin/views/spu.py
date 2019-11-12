@@ -1,4 +1,5 @@
 from fdfs_client.client import Fdfs_client
+from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from apps.goods.models import SPU, Brand, GoodsCategory
@@ -11,7 +12,7 @@ class SPUGoodsView(ModelViewSet):
     serializer_class = SPUGoodSerializer
     queryset = SPU.objects.all()
     pagination_class = PageNum
-
+    permission_classes  =[DjangoModelPermissions]
     # 在类中跟定义获取品牌数据的方法
     def brands(self, request):
         # 1、查询所有品牌数据

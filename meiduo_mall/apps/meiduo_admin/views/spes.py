@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework.permissions import DjangoModelPermissions
 from apps.goods.models import SPUSpecification, SPU
 from apps.meiduo_admin.serializers.SpecSerializer import SPUSpecificationSerializer, SPUSerializer
 
@@ -13,8 +13,8 @@ class SpecsView(ModelViewSet):
     # 指定字符集
     queryset = SPUSpecification.objects.all()
     # 指定分页器
-
     pagination_class = PageNum
+    permission_classes = [DjangoModelPermissions]
 
  #自定义获取spu商品数据
     def simple(self,request):
