@@ -29,6 +29,8 @@ ALLOWED_HOSTS = ['www.meiduo.site', '127.0.0.1', '192.168.221.135']
 
 # Application definition
 
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -335,3 +337,7 @@ JWT_AUTH = {
         'apps.meiduo_admin.utils.jwt_response_payload_handler',
 
 }
+
+
+
+
